@@ -1,0 +1,58 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+.logo{max-width:300px;}
+.hero{background: url(banner07162020.jpg) center; min-height: 500px; background-size: cover; background-repeat: no-repeat;}
+.btn-primary {
+    background: #9d0038;
+    border: #9d0038;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:target, .btn-primary:focus-visible, .btn-primary:focus-within, .btn:hover, .btn-:active, .btn-:focus, .btn-:target, .btn-:focus-visible, .btn-:focus-within {
+    background: #f5811e;
+    border: #f5811e;
+}
+section.projects {
+    background: #9d0038;
+    color: #ffffff;
+}
+
+.facts{border: 1px solid #f58221;}
+
+footer{background: #222222; color: #fff;}
+footer ul{ list-style-type: none; padding: 0;}
+footer ul li a{color: #dddddd; text-decoration: none; line-height: 30px;}
+
+section.fact{background: #f7f7f7;}
+.cardx i {
+    font-size: 30px;
+    color: #f58221;
+}
+
+
+.cardx {
+    background: linear-gradient(133deg, #f3f3f3, transparent);
+    border-radius: 5px;
+}
+
+li.nav-item a.active {
+    color: #9d0038!important;
+    font-weight: 700;
+}
+
+main :where(h5){color: #9d0038;}
+
+.services .owl-stage-outer {
+    background: #9d0038;
+    border-radius: 100px;
+}
+
+a.btn.btn-outline-primary {
+    border: 1px solid #9d0038;
+    color: #9d0038;
+}
+
+a.btn.btn-outline-primary:hover {
+    border: 1px solid #9d0038;
+    background:#9d0038 ;
+    color: #ffffff;
+}
+.orange-text{color:#f5811e }
