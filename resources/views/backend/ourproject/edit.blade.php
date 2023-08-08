@@ -58,7 +58,7 @@
                             <div class="col-md-12">
                                 <label for="product" class="form-label">Image</label>
                                 <div class="productlist">
-                                    <input type="file" class="form-control" max-size="2000" name="img" required>
+                                    <input type="file" class="form-control" max-size="2000" name="img">
                                 </div>
                             </div>
 

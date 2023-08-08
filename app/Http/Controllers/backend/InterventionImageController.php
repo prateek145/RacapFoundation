@@ -66,7 +66,22 @@ class InterventionImageController extends Controller
             $interventionimage = InterventionImage::find(1);
             if ($interventionimage) {
                 # code...
-                $interventionimage->update($data);
+                // dd($data);
+                $data1 = json_decode($data['image']);
+                $data2 = json_decode($interventionimage->image, true);
+                // dd($data1, $data2, $interventionimage->image);
+
+                if ($interventionimage->image == '{}') {
+                    # code...
+                    $data3['image'] = json_decode($data['image']);
+                } else {
+                    # code...
+                    // dd($data1, $data2);
+                    $data3['image'] = json_encode(array_merge($data1, $data2));
+                }
+                
+                // dd($data)
+                $interventionimage->update($data3);
                 return redirect()
                     ->back()
                     ->with('success', 'InterventionImage Updated.');
@@ -96,7 +111,31 @@ class InterventionImageController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        try {
+            //
+            $interventionImage = InterventionImage::find(1);
+            $data = json_decode($interventionImage->image, true);
+
+            foreach ($data as $key => $value) {
+                # code...
+                // dd($data);
+                if ($data[$key] == $id) {
+                    # code...
+                    unset($data[$key]);
+                }
+            }
+      
+            $data1['image'] = json_encode($data);
+            $interventionImage->update($data1);
+            return redirect()->back()->with('success', 'Image Successfully Deleted.');
+
+        } catch (\Exception $th) {
+            return redirect()
+                ->back()
+                ->with('error', $th->getMessage());
+        }
+
     }
 
     /**

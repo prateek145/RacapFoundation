@@ -78,7 +78,7 @@
     function addvaluelist2() {
             var listlength = document.getElementsByClassName('productlist');
             var valuelistvalue = document.getElementsByClassName('productlist')[listlength.length - 1];
-            var count = document.getElementsByName('images[]').length;
+            var count = document.getElementsByName('image[]').length;
             var input = document.createElement('input');
             input.name = 'image[]';
             input.className = 'form-control mt-2';
@@ -90,7 +90,7 @@
     }
 
     function removevaluelist2() {
-            var valuelistinput = document.getElementsByName('images[]');
+            var valuelistinput = document.getElementsByName('image[]');
             if (valuelistinput.length > 1) {
                 valuelistinput[valuelistinput.length - 1].remove();
 

@@ -26,6 +26,10 @@
                             <label for="product" class="form-label">Uploaded Images</label>
                             @foreach ($images as $item)
                             <div class="col-6">
+                                <a href="{{route('intervention-images.show', $item)}}">
+                                    <input type="button" class="btn btn-danger btn-sm" value="Delete">
+                                </a>
+
                                 <img src="{{asset('public/uploads/interventionimage/' . $item)}}" alt="no img"
                                     width="100%">
                             </div>
@@ -62,26 +66,27 @@
 
 
 <script>
-    function addvaluelist2() {
-            var listlength = document.getElementsByClassName('productlist');
-            var valuelistvalue = document.getElementsByClassName('productlist')[listlength.length - 1];
-            var count = document.getElementsByName('images[]').length;
-            var input = document.createElement('input');
-            input.name = 'image[]';
-            input.className = 'form-control mt-2';
-            input.type = 'file';
-            input.setAttribute("max-size", "2000");
+    // function addvaluelist2() {
+    //         var listlength = document.getElementsByClassName('productlist');
+    //         var valuelistvalue = document.getElementsByClassName('productlist')[listlength.length - 1];
+    //         var count = document.getElementsByName('images[]').length;
+    //         var input = document.createElement('input');
+    //         input.name = 'image[]';
+    //         input.className = 'form-control mt-2';
+    //         input.type = 'file';
+    //         input.setAttribute("max-size", "2000");
 
-            valuelistvalue.appendChild(input);
+    //         valuelistvalue.appendChild(input);
 
-    }
+    // }
 
-    function removevaluelist2() {
-            var valuelistinput = document.getElementsByName('images[]');
-            if (valuelistinput.length > 1) {
-                valuelistinput[valuelistinput.length - 1].remove();
+    // function removevaluelist2() {
+    //         var valuelistinput = document.getElementsByName('images[]');
+    //         console.log(valuelistinput);
+    //         if (valuelistinput.length > 1) {
+    //             valuelistinput[valuelistinput.length - 1].remove();
 
-            }
-    }
+    //         }
+    // }
 </script>
 @endsection
