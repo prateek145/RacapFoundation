@@ -180,7 +180,7 @@
       </ul>
     </li><!-- End Icons Nav --> --}}
 
-    <li class="nav-heading">Pages</li>
+    <li class="nav-heading">Sections</li>
     {{--
     <li class="nav-item">
       <a class="nav-link collapsed" href="users-profile.html">
@@ -205,21 +205,21 @@
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{route('aboutus.edit', 1 )}}">
-        <i class="bi bi-card-list"></i>
+        <i class="bi bi-check"></i>
         <span>Abouts us</span>
       </a>
     </li><!-- End Register Page Nav -->
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{route('vision.edit', 1 )}}">
-        <i class="bi bi-card-list"></i>
+        <i class="bi bi-check"></i>
         <span>Vision</span>
       </a>
     </li><!-- End Register Page Nav -->
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{route('mission.edit', 1 )}}">
-        <i class="bi bi-box-arrow-in-right"></i>
+        <i class="bi bi-check"></i>
         <span>Mission</span>
       </a>
     </li><!-- End Login Page Nav -->
@@ -233,35 +233,35 @@
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{route('intervention-images.edit', 1 )}}">
-        <i class="bi bi-file-earmark"></i>
+        <i class="bi bi-check"></i>
         <span>Intervention Images</span>
       </a>
     </li><!-- End Blank Page Nav -->
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{route('impact.edit', 1 )}}">
-        <i class="bi bi-file-earmark"></i>
+        <i class="bi bi-check"></i>
         <span>Impact On Society</span>
       </a>
     </li><!-- End Blank Page Nav -->
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{route('intervention.index')}}">
-        <i class="bi bi-file-earmark"></i>
+        <i class="bi bi-check"></i>
         <span>Intervention</span>
       </a>
     </li><!-- End Blank Page Nav -->
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{route('ourproject.index')}}">
-        <i class="bi bi-file-earmark"></i>
+        <i class="bi bi-check"></i>
         <span>Our Projects</span>
       </a>
     </li><!-- End Blank Page Nav -->
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{route('contact.list')}}">
-        <i class="bi bi-file-earmark"></i>
+        <i class="bi bi-check"></i>
         <span>Contact Forms</span>
       </a>
     </li><!-- End Blank Page Nav -->

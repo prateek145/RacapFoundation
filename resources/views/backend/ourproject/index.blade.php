@@ -33,7 +33,6 @@
                             <th>Name</th>
                             <th>Link</th>
                             <th>Description</th>
-                            {{-- <th>Status</th> --}}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -44,7 +43,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->link }}</td>
                             <td>{!! $item->description !!}</td>
-                            <td>{{ $item->status }}</td>
+                            <!--<td>{{-- $item->status --}}</td>-->
                             <td>
                                 <div class="d-flex justify-content-between">
                                     <a href="{{ route('ourproject.edit', $item->id) }}"

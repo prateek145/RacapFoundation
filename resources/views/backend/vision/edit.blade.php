@@ -31,9 +31,9 @@
 
                             @if ($vision)
                             <hr>
-                            <label for="product" class="form-label">Uploaded Images</label>
+                            <label for="product" class="form-label">Uploaded Image</label>
 
-                            <div class="col-12">
+                            <div class="col-12 col-md-3">
                                 <img src="{{asset('public/uploads/vision/' . $vision->image)}}" alt="no img"
                                     width="100%">
                             </div>
@@ -43,7 +43,7 @@
                             @endif
 
                             <div class="col-12">
-                                <label for="product" class="form-label">Images</label>
+                                <label for="product" class="form-label">Image</label>
                                 <div class="productlist">
                                     <input type="file" class="form-control" max-size="2000" name="image">
                                 </div>

@@ -131,7 +131,7 @@ class OurProjectController extends Controller
                 'name' => 'required',
                 'link' => 'required',
                 'description' => 'required',
-                // 'img' => 'required',
+                'img' => 'required',
             ];
 
             $custommessage = [];

@@ -30,7 +30,6 @@
                             <th>Country Code</th>
                             <th>Phone</th>
                             <th>Message</th>
-                            <th>Created At</th>
                             {{-- <th>Description</th> --}}
                             {{-- <th>Status</th> --}}
                             {{-- <th>Action</th> --}}
@@ -46,7 +45,6 @@
                             <td>{{ $item->country_code }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>{{ $item->message }}</td>
-                            <td>{{ $item->created_at->format('d-m-y') }}</td>
                         </tr>
                         @endforeach
 

@@ -2,11 +2,11 @@
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Edit About Us</h1>
+        <h1>Edit Impact</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('backend.home')}}">Home</a></li>
-                <li class="breadcrumb-item active">Edit About us Content</li>
+                <li class="breadcrumb-item active">Impact</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -16,7 +16,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">About us Content details</h5>
+                        <h5 class="card-title">Impact Content</h5>
                         <form class="row g-3" action="{{ route('impact.store') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
