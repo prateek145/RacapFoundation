@@ -1,50 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-
-// use Mail;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
     public function send_otp(Request $request)
     {
         $rules = [
-            'email' => 'required|exists:users'
+            'email' => 'required|exists:users',
         ];
 
         $custommessages = [
@@ -73,19 +39,23 @@ class LoginController extends Controller
                 });
 
                 $user = User::where('email', $request->email)->first();
-                $user->password =  Hash::make($random);
+                $user->password = Hash::make($random);
                 $user->save();
 
                 if (!$mail) {
                     # code...
-                    throw new \Exception("Mail is not available");
+                    throw new \Exception('Mail is not available');
                 }
             } else {
                 $user = User::where('email', $request->email)->first();
             }
 
-            session()->put('useremail', $user->email);
-            return redirect()->route('sendotp')->with('success', 'OTP Sent.');
+            return response()
+                ->status(200)
+                ->json([
+                    'status' => 'success',
+                    'data' => $array,
+                ]);
         } catch (\Exception $e) {
             //throw $th;
             return redirect()
@@ -94,25 +64,13 @@ class LoginController extends Controller
         }
     }
 
-    public function sendotp()
-    {
-        try {
-            return view('auth.sendotp');
-        } catch (\Exception $e) {
-            return redirect()
-                ->back()
-                ->with('error', $e->getMessage());
-        }
-    }
-
-
-
     public function login(Request $request)
     {
         // dd($request->all());
 
         $rules = [
-            'password' => 'required'
+            'email' => 'required',
+            'password' => 'required',
         ];
 
         $custommessages = [];
@@ -121,14 +79,22 @@ class LoginController extends Controller
 
         try {
             //code...
-            $useremail = session()->get('useremail');
+            $useremail = $request->email;
             $data = [
                 'email' => $useremail,
                 'password' => $request->password,
             ];
             if (Auth::attempt($data)) {
                 if (auth()->user()->role == 'admin') {
-                    return redirect()->route('backend.home');
+                    return response()
+                        ->status(200)
+                        ->json([
+                            'status' => 'success',
+                            'data' => [
+                                'email' => auth()->user()->email,
+                                'role' => auth()->user()->role,
+                            ],
+                        ]);
                 } else {
                     # code...
                     return redirect()->route('user.home');
@@ -146,8 +112,4 @@ class LoginController extends Controller
                 ->with('error', $e->getMessage());
         }
     }
-    // public function __construct()
-    // {
-    //     $this->middleware('guest')->except('logout');
-    // }
 }
