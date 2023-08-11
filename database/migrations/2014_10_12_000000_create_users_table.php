@@ -32,6 +32,7 @@ return new class extends Migration
             $table->enum('show_business', ['off', 'on']);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->enum('active', ['Y', 'N'])->default('N');
             // $table->string('password');
             $table->rememberToken();
             $table->timestamps();
