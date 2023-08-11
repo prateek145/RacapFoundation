@@ -40,11 +40,10 @@ class LoginController extends Controller
             unset($data['_token']);
             if ($request->email != 'admin@gmail.com') {
                 # code...
-                $data['email'] = $request->email;
                 $data['specific_id'] = rand(1, 999999) . rand(1, 999999) . $request->firstname . $request->lastname;
+                $data['role'] = 'member';
                 $user = User::create($data);
                 return response()
-                ->status(200)
                 ->json([
                     'status' => 'success',
                     'data' => $user,
