@@ -111,6 +111,7 @@ class RegisterController extends Controller
             $data['specific_id'] = rand(1, 999999) . rand(1, 999999) . $request->firstname . $request->lastname;
             $response = $this->registerapi($request->firstname, $request->lastname,$request->email, $request->phone, $request->bname, $request->sector, $request->city, $request->state, $request->website, $request->country_code);
 
+            // dd($response);
             if ($response->status == 'success') {
                 # code...
                 $user = User::create($data);
@@ -144,7 +145,7 @@ class RegisterController extends Controller
         $curl = curl_init();
         
         curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://omegastaging.com.au/RacapFoundation/api/register/user',
+          CURLOPT_URL => 'https://omegastaging.com.au/mma/api/register/user',
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
