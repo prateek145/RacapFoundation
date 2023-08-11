@@ -36,7 +36,7 @@ class LoginController extends Controller
             // $this->validate($request, $rules, $custommessages);
             //code...
             $data = $request->all();
-            dd($data);
+            // dd($data);
             unset($data['_token']);
             if ($request->email != 'admin@gmail.com') {
                 # code...
