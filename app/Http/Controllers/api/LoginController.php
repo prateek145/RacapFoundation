@@ -40,7 +40,7 @@ class LoginController extends Controller
             $data = $request->all();
             $data['specific_id'] = rand(1, 999999) . rand(1, 999999) . $request->firstname . $request->lastname;
             $data['role'] = 'member';
-            dd($data);
+            // dd($data);
             $user = User::create($data);
             return response()
             ->json([
