@@ -13,27 +13,27 @@ class LoginController extends Controller
     {
         
         try {
-            $rules = [
-                'email' => 'required|unique:users',
-                'phone' => 'required|unique:users',
-                'firstname' => 'required',
-                'lastname' => 'required',
-                'bname' => 'required',
-                'sector' => 'required',
-                'city' => 'required',
-                'state' => 'required',
-                'website' => 'required',
-                'country_code' => 'required',
-            ];
+            // $rules = [
+            //     'email' => 'required|unique:users',
+            //     'phone' => 'required|unique:users',
+            //     'firstname' => 'required',
+            //     'lastname' => 'required',
+            //     'bname' => 'required',
+            //     'sector' => 'required',
+            //     'city' => 'required',
+            //     'state' => 'required',
+            //     'website' => 'required',
+            //     'country_code' => 'required',
+            // ];
     
-            $custommessages = [
-                'email.required' => 'Email is required',
-                'phone.required' => 'Phone is required',
-                'email.unique' => 'Email already exists',
-                'phone.unique' => 'Phone already exists',
-            ];
+            // $custommessages = [
+            //     'email.required' => 'Email is required',
+            //     'phone.required' => 'Phone is required',
+            //     'email.unique' => 'Email already exists',
+            //     'phone.unique' => 'Phone already exists',
+            // ];
     
-            $this->validate($request, $rules, $custommessages);
+            // $this->validate($request, $rules, $custommessages);
             //code...
             $data = $request->all();
             dd($data);
