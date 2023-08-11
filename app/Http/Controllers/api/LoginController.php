@@ -15,7 +15,7 @@ class LoginController extends Controller
         try {
             $rules = [
                 'email' => 'required|unique:users',
-                'phone' => 'required|unique:users'
+                'phone' => 'required|unique:users',
                 'firstname' => 'required',
                 'lastname' => 'required',
                 'bname' => 'required',
