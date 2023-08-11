@@ -12,52 +12,52 @@ class LoginController extends Controller
     public function register_user(Request $request)
     {
         
-        try {
-            // $rules = [
-            //     'email' => 'required|unique:users',
-            //     'phone' => 'required|unique:users',
-            //     'firstname' => 'required',
-            //     'lastname' => 'required',
-            //     'bname' => 'required',
-            //     'sector' => 'required',
-            //     'city' => 'required',
-            //     'state' => 'required',
-            //     'website' => 'required',
-            //     'country_code' => 'required',
-            // ];
-    
-            // $custommessages = [
-            //     'email.required' => 'Email is required',
-            //     'phone.required' => 'Phone is required',
-            //     'email.unique' => 'Email already exists',
-            //     'phone.unique' => 'Phone already exists',
-            // ];
-    
-            // $this->validate($request, $rules, $custommessages);
-            //code...
-            $data = $request->all();
-            // dd($data);
-            unset($data['_token']);
-            if ($request->email != 'admin@gmail.com') {
-                # code...
-                $data['specific_id'] = rand(1, 999999) . rand(1, 999999) . $request->firstname . $request->lastname;
-                $data['role'] = 'member';
-                $user = User::create($data);
-                return response()
-                ->json([
-                    'status' => 'success',
-                    'data' => $user,
-                ]);
+        // $rules = [
+        //     'email' => 'required|unique:users',
+        //     'phone' => 'required|unique:users',
+        //     'firstname' => 'required',
+        //     'lastname' => 'required',
+        //     'bname' => 'required',
+        //     'sector' => 'required',
+        //     'city' => 'required',
+        //     'state' => 'required',
+        //     'website' => 'required',
+        //     'country_code' => 'required',
+        // ];
 
-            } else {
-                return response()
-                ->json([
-                    'status' => 'success',
-                    'data' => [
-                        'exceptional' => 'admin@gmail.com',
-                    ],
-                ]);
-            }
+        // $custommessages = [
+        //     'email.required' => 'Email is required',
+        //     'phone.required' => 'Phone is required',
+        //     'email.unique' => 'Email already exists',
+        //     'phone.unique' => 'Phone already exists',
+        // ];
+
+        // $this->validate($request, $rules, $custommessages);
+        //code...
+    
+        if ($request->email != 'admin@gmail.com') {
+            # code...
+            $data = $request->all();
+            $data['specific_id'] = rand(1, 999999) . rand(1, 999999) . $request->firstname . $request->lastname;
+            $data['role'] = 'member';
+            dd($data);
+            $user = User::create($data);
+            return response()
+            ->json([
+                'status' => 'success',
+                'data' => $user,
+            ]);
+
+        } else {
+            return response()
+            ->json([
+                'status' => 'success',
+                'data' => [
+                    'exceptional' => 'admin@gmail.com',
+                ],
+            ]);
+        }
+        try {
 
 
         } catch (\Exception $e) {
