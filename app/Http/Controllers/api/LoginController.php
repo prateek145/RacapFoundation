@@ -4,63 +4,72 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class LoginController extends Controller
 {
-    public function send_otp(Request $request)
+    public function register_user(Request $request)
     {
-        $rules = [
-            'email' => 'required|exists:users',
-        ];
-
-        $custommessages = [
-            'email.required' => 'Email is required',
-        ];
-
-        $this->validate($request, $rules, $custommessages);
-
+        
         try {
+            $rules = [
+                'email' => 'required|unique:users',
+                'phone' => 'required|unique:users'
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'bname' => 'required',
+                'sector' => 'required',
+                'city' => 'required',
+                'state' => 'required',
+                'website' => 'required',
+                'country_code' => 'required',
+            ];
+    
+            $custommessages = [
+                'email.required' => 'Email is required',
+                'phone.required' => 'Phone is required',
+                'email.unique' => 'Email already exists',
+                'phone.unique' => 'Phone already exists',
+            ];
+    
+            $this->validate($request, $rules, $custommessages);
             //code...
             $data = $request->all();
+            dd($data);
             unset($data['_token']);
-
             if ($request->email != 'admin@gmail.com') {
                 # code...
-                $random = rand(1, 999999);
-                $array = [
-                    'email' => $request->email,
-                    'otp' => $random,
-                ];
-
-                $mail = Mail::send('email.loginmail', ['body' => $array], function ($message) use ($request) {
-                    $message->sender(env('MAIL_FROM_ADDRESS'));
-                    $message->subject('RACAP FOUNDATION LOGIN EMAIL');
-                    $message->to($request->email);
-                });
-
-                $user = User::where('email', $request->email)->first();
-                $user->password = Hash::make($random);
-                $user->save();
-
-                if (!$mail) {
-                    # code...
-                    throw new \Exception('Mail is not available');
-                }
-            } else {
-                $user = User::where('email', $request->email)->first();
-            }
-
-            return response()
+                $data['email'] = $request->email;
+                $data['specific_id'] = rand(1, 999999) . rand(1, 999999) . $request->firstname . $request->lastname;
+                $user = User::create($data);
+                return response()
                 ->status(200)
                 ->json([
                     'status' => 'success',
-                    'data' => $array,
+                    'data' => $user,
                 ]);
+
+            } else {
+                return response()
+                ->json([
+                    'status' => 'success',
+                    'data' => [
+                        'exceptional' => 'admin@gmail.com',
+                    ],
+                ]);
+            }
+
+
         } catch (\Exception $e) {
             //throw $th;
-            return redirect()
-                ->back()
-                ->with('error', $e->getMessage());
+            return response()
+                ->json([
+                    'status' => 'error',
+                    'data' => [
+                        'message' => $e->getMessage(),
+                    ],
+                ]);
         }
     }
 
@@ -112,4 +121,44 @@ class LoginController extends Controller
                 ->with('error', $e->getMessage());
         }
     }
+
+    // $response  = $this->registerapi($request);
+
+    // public function registerapi($firstname, $lastname, $email, $phone, $bname, $sector, $city, $state, $website, $country_code){
+    //     $data = [
+    //         'firstname' => $firstname,
+    //         'lastname' => $lastname,
+    //         'email' => $email,
+    //         'phone' => $phone,
+    //         'bname' => $bname,
+    //         'sector' => $sector,
+    //         'city' => $city,
+    //         'state' => $state,
+    //         'website' => $website,
+    //         'country_code' => $country_code,
+    //     ];
+    //     $curl = curl_init();
+    //     curl_setopt_array($curl, [
+    //         CURLOPT_URL => 'https://greenathol.extensionerp.com/api/method/login',
+    //         CURLOPT_RETURNTRANSFER => 1,
+    //         CURLOPT_ENCODING => '',
+    //         CURLOPT_MAXREDIRS => 10,
+    //         CURLOPT_TIMEOUT => 0,
+    //         CURLOPT_FOLLOWLOCATION => true,
+    //         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    //         CURLOPT_CUSTOMREQUEST => 'POST',
+    //         CURLOPT_COOKIEFILE => 'file.txt',
+    //         CURLOPT_COOKIEJAR => 'file.txt',
+    //         CURLOPT_POSTFIELDS => json_encode($data),
+    //         CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+    //     ]);
+
+    //     $response = curl_exec($curl);
+    //     $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    //     curl_close($curl);
+    //     $res = json_decode($response);
+    //     dd($res);
+
+   
+    // }
 }

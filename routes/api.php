@@ -18,4 +18,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('send/otp', [LoginController::class, 'send_otp'])->name('api.send.otp');
+Route::post('register/user', [LoginController::class, 'register_user'])->name('register.user');
