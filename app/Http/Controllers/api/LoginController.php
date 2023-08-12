@@ -51,7 +51,8 @@ class LoginController extends Controller
                     @[$type, $file_data] = explode(';', $base64_image);
                     @[, $file_data] = explode(',', $file_data);
                     $imageName = Str::random(10) . '.' . 'png';
-                    Storage::disk('local')->put($imageName, base64_decode($file_data));
+                    file_put_contents(public_path().'/uploads/users/'.$imageName, base64_decode($file_data));
+
                     dd($imageName, $imageName, base64_decode($file_data));
 
                     $data['image'] = $imageName;
