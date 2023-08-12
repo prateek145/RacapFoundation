@@ -365,11 +365,18 @@
 
 
                     <div class="owl-carousel customers">
+                        {{-- {{dd($members)}} --}}
                         @if (count($members) > 0)
                         @foreach ($members as $item)
+                        @if ($item->image == null)
+                        <div class="p-5"><img src="{{ asset('public/frontend/customer.png') }}" class="img-thumbnail" />
+                        </div>
+                        @else
                         <div class="p-5"><img src="{{ asset('public/uploads/users/' . $item->image) }}"
                                 class="img-thumbnail" />
                         </div>
+                        @endif
+
                         @endforeach
                         @else
                         <div class="p-5"><img src="{{ asset('public/frontend/customer.png') }}" class="img-thumbnail" />

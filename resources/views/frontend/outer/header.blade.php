@@ -30,7 +30,7 @@
                                     <a class="nav-link" href="{{route('frontend.home')}}/#projects">Projects</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('frontend.home')}}/index.html#members">Members</a>
+                                    <a class="nav-link" href="{{route('frontend.home')}}/#members">Members</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('frontend.home')}}/#contact">Contact Us</a>

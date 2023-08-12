@@ -31,6 +31,7 @@ Route::get('user/home', [FHomeController::class, 'user_home'])->name('user.home'
 
 Route::post('send/otp', [LoginController::class, 'send_otp'])->name('send.otp');
 Route::get('send/otp', [LoginController::class, 'sendotp'])->name('sendotp');
+Route::post('resend/otp', [LoginController::class, 'resendotp'])->name('resend.otp');
 
 //contact form
 Route::post('contact/form', [FHomeController::class, 'contact'])->name('contact.form');

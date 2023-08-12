@@ -94,10 +94,64 @@ class LoginController extends Controller
         }
     }
 
+    public function resendotp(Request $request)
+    {
+        $rules = [
+            'email' => 'required|exists:users'
+        ];
+
+        $custommessages = [
+            'email.required' => 'Email is required',
+        ];
+
+        $this->validate($request, $rules, $custommessages);
+
+        try {
+            //code...
+            $data = $request->all();
+            unset($data['_token']);
+
+            if ($request->email != 'admin@gmail.com') {
+                # code...
+                $random = rand(1, 999999);
+                $array = [
+                    'email' => $request->email,
+                    'otp' => $random,
+                ];
+
+                $mail = Mail::send('email.loginmail', ['body' => $array], function ($message) use ($request) {
+                    $message->sender(env('MAIL_FROM_ADDRESS'));
+                    $message->subject('RACAP FOUNDATION LOGIN EMAIL');
+                    $message->to($request->email);
+                });
+
+                $user = User::where('email', $request->email)->first();
+                $user->password =  Hash::make($random);
+                $user->save();
+
+                if (!$mail) {
+                    # code...
+                    throw new \Exception("Mail is not available");
+                }
+            } else {
+                $user = User::where('email', $request->email)->first();
+            }
+
+            session()->put('useremail', $user->email);
+            return redirect()->route('sendotp')->with('success', 'OTP Sent.');
+        } catch (\Exception $e) {
+            //throw $th;
+            return redirect()
+                ->back()
+                ->with('error', $e->getMessage());
+        }
+    }
+
     public function sendotp()
     {
         try {
-            return view('auth.sendotp');
+            $useremail = session()->get('useremail');
+            return view('auth.sendotp', compact('useremail'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()

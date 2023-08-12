@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6 mx-auto">
-                    <form action="{{route('login')}}" method="post">
+                    <form action="{{ route('login') }}" method="post">
                         @csrf
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">OTP</label>
@@ -24,10 +24,27 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
-                    <a href="{{route('login')}}" class="btn btn-secondary">Resend OTP</a>
+                    <form action="{{ route('resend.otp') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="email" value="{{ $useremail }}">
+                        <button type="submit" id="resendbtn" onclick="validate();" class="btn btn-secondary">Resend
+                            OTP</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 </main>
+
+<script>
+    function validate() {
+        document.getElementById('resendbtn').style.display = 'none';
+
+        setInterval(function() {
+            document.getElementById('resendbtn').style.display = 'block';
+
+        }, 300000000);
+
+        }
+</script>
 @endsection
