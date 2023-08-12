@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 class LoginController extends Controller
@@ -48,9 +50,9 @@ class LoginController extends Controller
                     $base64_image = $request->image; // your base64 encoded
                     @[$type, $file_data] = explode(';', $base64_image);
                     @[, $file_data] = explode(',', $file_data);
-                    $imageName = \Str::random(10) . '.' . 'png';
+                    $imageName = Str::random(10) . '.' . 'png';
+                    Storage::disk('public')->put($imageName, base64_decode($file_data));
                     dd($imageName);
-                    \Storage::disk('public')->put($imageName, base64_decode($file_data));
 
                     $data['image'] = $imageName;
                 }
