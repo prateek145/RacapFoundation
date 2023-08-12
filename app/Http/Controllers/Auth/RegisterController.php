@@ -107,7 +107,7 @@ class RegisterController extends Controller
                 $type = pathinfo($path, PATHINFO_EXTENSION);
                 $data123 = file_get_contents($path);
                 $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data123);
-                dd($base64);
+                // dd($base64);
             }
             
             $data['specific_id'] = rand() . rand() . $request->firstname . $request->lastname;
