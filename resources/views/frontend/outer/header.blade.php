@@ -46,7 +46,7 @@
                 @if (auth()->check())
 
                 <div class="btn-group float-end">
-                    <a class="btn btn-primary float-end" href="myaccount.html">My Account</a>
+                    <a class="btn btn-primary float-end" href="{{route('user.home')}}">My Account</a>
                     <a class="btn btn-secondary float-end" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 

@@ -1,7 +1,7 @@
 @extends('frontend/outer/app')
 @section('content')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <main>
-
     <section class="py-5 fact">
         <div class="container">
             <div class="row">
@@ -38,7 +38,14 @@
 
                             @foreach ($members as $item)
                             <tr>
-                                <td>{{$item->image}}</td>
+                                <td>
+                                    @if (!is_null($item->image))
+                                    <img src="{{asset('public/uploads/users/' . $item->image)}}" height="30px"
+                                        width="30px" alt="">
+                                    @else
+                                    <img src="" height="30px" width="30px" alt="no image">
+                                    @endif
+                                </td>
                                 <td>{{$item->bname}}</td>
                                 <td>{{$item->sector}}</td>
                                 <td>{{$item->city}}</td>
@@ -59,4 +66,8 @@
     </section>
 
 </main>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    new DataTable('#example');
+</script>
 @endsection

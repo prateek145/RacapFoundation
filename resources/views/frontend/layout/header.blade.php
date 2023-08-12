@@ -43,12 +43,27 @@
             <div class="col-12 col-md-3 align-self-center d-none d-md-block">
 
 
+                @if (auth()->check())
+
+                <div class="btn-group float-end">
+                    <a class="btn btn-primary float-end" href="{{route('user.home')}}">My Account</a>
+                    <a class="btn btn-secondary float-end" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+
+                @else
+
                 <div class="btn-group float-end">
                     <a class="btn btn-primary float-end" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                         role="button">Join Us</a>
                     <!-- Button trigger modal -->
                     <a class="btn btn-secondary float-end" href="{{route('login')}}">Login</a>
                 </div>
+                @endif
             </div>
         </div>
     </div>
