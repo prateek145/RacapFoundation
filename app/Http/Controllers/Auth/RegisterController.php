@@ -67,12 +67,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
+
     protected function create(array $data)
     {
         return User::create([
@@ -110,12 +105,13 @@ class RegisterController extends Controller
                 // convertbase 64
                 $path = $destination_path . '/' . $data['image'];
                 $type = pathinfo($path, PATHINFO_EXTENSION);
-                $data = file_get_contents($path);
-                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-                // dd($path, $type, $data, $base64);
+                $data123 = file_get_contents($path);
+                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data123);
+                dd($base64);
             }
-
-            $data['specific_id'] = rand(1, 999999) . rand(1, 999999) . $request->firstname . $request->lastname;
+            
+            $data['specific_id'] = rand() . rand() . $request->firstname . $request->lastname;
+            // dd($data);
             $response = $this->registerapi($request->firstname, $request->lastname, $request->email, $request->phone, $request->bname, $request->sector, $request->city, $request->state, $request->website, $request->country_code, $base64);
 
             // dd($response);
@@ -149,9 +145,7 @@ class RegisterController extends Controller
             'country_code' => $country_code,
             'image' => $image,
         ];
-
         $curl = curl_init();
-
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://omegastaging.com.au/mma/api/register/user',
             CURLOPT_RETURNTRANSFER => true,
@@ -172,4 +166,5 @@ class RegisterController extends Controller
 
         return json_decode($response);
     }
+}
 }

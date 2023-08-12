@@ -45,12 +45,14 @@ class LoginController extends Controller
                 // dd($data);
 
                 if ($request->image) {
-                    $base64_image = $base64; // your base64 encoded
+                    $base64_image = $request->image; // your base64 encoded
                     @[$type, $file_data] = explode(';', $base64_image);
                     @[, $file_data] = explode(',', $file_data);
                     $imageName = \Str::random(10) . '.' . 'png';
                     // dd($base64_image, $imageName);
                     \Storage::disk('public')->put($imageName, base64_decode($file_data));
+
+                    $data['image'] = $imageName;
                 }
 
                 $user = User::create($data);
