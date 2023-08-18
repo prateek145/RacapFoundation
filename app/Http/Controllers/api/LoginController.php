@@ -55,7 +55,7 @@ class LoginController extends Controller
                     $data['image'] = $imageName;
                 }
 
-                dd($data);
+                // dd($data);
                 $user = User::create($data);
                 return response()
                     ->json([
