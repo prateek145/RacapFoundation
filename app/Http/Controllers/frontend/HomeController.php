@@ -26,7 +26,7 @@ class HomeController extends Controller
             $vision = Vision::find(1);
             $impact = Impact::find(1);
             $interventionimage = InterventionImage::find(1);
-            $members = User::where('role', 'member')->orwhere('role', 'user')->where('show_business', 'on')->latest()->get();
+            $members = User::where('role', 'member')->where('show_business', 'on')->latest()->get();
  
             if (!is_null($interventionimage)) {
                 # code...
@@ -62,7 +62,7 @@ class HomeController extends Controller
 
     public function memberlist(){
         try {
-            $members = User::where('role', 'member')->orwhere('role', 'user')->where('show_business', 'on')->latest()->get();
+            $members = User::where('role', 'member')->where('show_business', 'on')->latest()->get();
             // dd($members);
             return view('frontend.memberlist', compact('members'));
         } catch (\Exception $e) {
