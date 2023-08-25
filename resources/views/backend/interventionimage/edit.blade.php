@@ -25,7 +25,7 @@
                             <hr>
                             <label for="product" class="form-label">Uploaded Images</label>
                             @foreach ($images as $item)
-                            <div class="col-6">
+                            <div class="col-6 col-md-1">
                                 <a href="{{route('intervention-images.show', $item)}}">
                                     <input type="button" class="btn btn-danger btn-sm" value="Delete">
                                 </a>

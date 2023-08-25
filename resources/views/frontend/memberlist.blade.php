@@ -1,6 +1,6 @@
 @extends('frontend/outer/app')
 @section('content')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+
 <main>
     <section class="py-5 fact">
         <div class="container">
@@ -23,7 +23,7 @@
 
 
 
-                    <table id="example" class="display" style="width:100%">
+                    <table id="example" class="table table-striped display" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Logo</th>
@@ -66,8 +66,5 @@
     </section>
 
 </main>
-<script type="text/javascript" src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript">
-    new DataTable('#example');
-</script>
+
 @endsection

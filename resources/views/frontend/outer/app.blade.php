@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('public/frontend/owlcarousel/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/frontend/owlcarousel/owl.theme.default.min.css')}}">
     <link href="{{asset('public/frontend/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -341,6 +342,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
     </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    new DataTable('#example');
+</script>
 </body>
 
 </html>
