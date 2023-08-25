@@ -420,11 +420,10 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <h2>Contact Us</h2>
-                    <p>Feel free to get in touch with us for any inquiries, assistance, or collaborations. Whether
-                        you have questions about our products and services, need technical support, want to explore
-                        partnership opportunities, or simply wish to share your feedback, we are here to help! Our
-                        dedicated team is committed to providing prompt and personalized responses to ensure your
-                        experience with us is seamless and satisfactory. Reach out to us today and let's connect!
+                    <p>Ready to take the first step toward business excellence in India?
+                        RACAP Foundation is here to provide you with the support, knowledge, and resources needed to
+                        navigate the complexities. Contact us now and discover how we can we can help your business
+                        succeed in the dynamic Indian market.
                     </p>
                 </div>
                 <div class="col-12 col-md-8 align-self-center">
