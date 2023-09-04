@@ -365,7 +365,9 @@
             method: "POST",
             data: {'_token':"{{csrf_token()}}", "email":value},
             success: function(response) {
-                console.log(response);
+                if (response.error) {
+                    alert(response.error);
+                }
                 
             }
         });
