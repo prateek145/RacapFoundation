@@ -366,7 +366,8 @@
             data: {'_token':"{{csrf_token()}}", "email":value},
             success: function(response) {
                 if (response.error) {
-                    alert(response.error);
+                    // console.log(response);
+                    alert('Ajax Error');
                 }
                 
             }

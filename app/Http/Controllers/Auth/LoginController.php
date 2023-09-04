@@ -204,17 +204,17 @@ class LoginController extends Controller
     public function emailotp(Request $request)
     {
 
-        $rules = [
-            'email' => 'required'
-        ];
-
-        $custommessages = [
-            'email.required' => 'Email is required',
-        ];
-
-        $this->validate($request, $rules, $custommessages);
-
         try {
+
+            $rules = [
+                'email' => 'required|unique:users'
+            ];
+
+            $custommessages = [
+                'email.required' => 'Email is required',
+            ];
+
+            $this->validate($request, $rules, $custommessages);
             //code...
             $data = $request->all();
             // dd($data);
@@ -224,9 +224,6 @@ class LoginController extends Controller
                 'email' => $request->email,
                 'otp' => $random,
             ];
-
-
-
 
             $mail = Mail::send('email.registeremail', ['body' => $array], function ($message) use ($request) {
                 $message->sender(env('MAIL_FROM_ADDRESS'));
