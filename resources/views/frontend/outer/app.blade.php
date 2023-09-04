@@ -23,7 +23,7 @@
 
     @include('frontend.outer.footer')
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    {{-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -51,13 +51,19 @@
                                     aria-label="Business name">
                             </div>
                             <div class="col">
-                                <select class="form-control form-select" name="sector">
+                                <select class="form-control form-select" name="sector" onclick="showother()">
                                     <option>Industry</option>
                                     <option>IT</option>
                                     <option>Agro</option>
                                     <option>Electornic</option>
                                     <option>Others</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col" id="showother" style="display: none;">
+                                <textarea name="sector1" id="" class="form-control" cols="9" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -335,7 +341,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     <script src="{{asset('public/frontend/owlcarousel/jquery.min.js')}}"></script>
     <script src="{{asset('public/frontend/owlcarousel/owl.carousel.min.js')}}"></script>
     <script src="{{asset('public/frontend/script.js')}}"></script>
@@ -343,9 +349,11 @@
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript">
-    new DataTable('#example');
-</script>
+    <script type="text/javascript">
+        new DataTable('#example');
+    </script>
+
+
 </body>
 
 </html>

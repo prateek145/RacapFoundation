@@ -48,7 +48,8 @@
                 <div class="btn-group float-end">
                     <a class="btn btn-primary float-end" href="{{route('user.home')}}">My Account</a>
                     <a class="btn btn-secondary float-end" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                            class="bi bi-box-arrow-right"></i></i>Logout</a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
@@ -58,10 +59,11 @@
                 @else
 
                 <div class="btn-group float-end">
-                    <a class="btn btn-primary float-end" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                        role="button">Join Us</a>
+                    <a class="btn btn-primary float-end" href="{{route('register')}}" role="button"><i
+                            class="bi bi-person-add"></i> Join Us</a>
                     <!-- Button trigger modal -->
-                    <a class="btn btn-secondary float-end" href="{{route('login')}}">Login</a>
+                    <a class="btn btn-secondary float-end" href="{{route('login')}}"><i class="bi bi-person"></i>
+                        Login</a>
                 </div>
                 @endif
             </div>

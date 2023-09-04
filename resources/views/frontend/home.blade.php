@@ -26,7 +26,9 @@
                         need to get the mandatory certifications before to be sold in the Indian market. </p>
                     <p>RACAP Foundation provides comprehensive guideline and process support to get align with
                         Indian regulations &amp; compliance to grow your business ahead. </p>
+
                     @endif
+                    <a href="{{route('kyc')}}"><button class="btn btn-primary ">Know More</button></a>
                 </div>
 
                 <div class="col-12 col-md-6 align-self-center">
@@ -101,7 +103,7 @@
             </div>
         </div>
     </section>
-    <section class="services py-5" id="services">
+    {{-- <section class="services py-5" id="services">
         <div class="container">
             <div class="row">
                 <div class="col-12 ">
@@ -243,7 +245,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <section class="py-5 fact">
         <div class="container">
             <div class="row">
@@ -416,6 +418,7 @@
         </div>
     </section>
     <section class="contact py-5" id="contact">
+
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-4">

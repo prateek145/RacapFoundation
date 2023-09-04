@@ -200,6 +200,60 @@ class LoginController extends Controller
                 ->with('error', $e->getMessage());
         }
     }
+
+    public function emailotp(Request $request)
+    {
+
+        $rules = [
+            'email' => 'required'
+        ];
+
+        $custommessages = [
+            'email.required' => 'Email is required',
+        ];
+
+        $this->validate($request, $rules, $custommessages);
+
+        try {
+            //code...
+            $data = $request->all();
+            // dd($data);
+            unset($data['_token']);
+            $random = rand(1, 999999);
+            $array = [
+                'email' => $request->email,
+                'otp' => $random,
+            ];
+
+
+
+
+            $mail = Mail::send('email.registeremail', ['body' => $array], function ($message) use ($request) {
+                $message->sender(env('MAIL_FROM_ADDRESS'));
+                $message->subject('RACAP FOUNDATION LOGIN EMAIL');
+                $message->to($request->email);
+            });
+            // dd('prateek');
+            if (!$mail) {
+                # code...
+                throw new \Exception("Mail not working", 1);
+            } else {
+                # code...
+                $user = new User();
+                $user->email = $request->email;
+                $user->otp = $random;
+                $user->save();
+                return response()->json([
+                    'success' => 'Working'
+
+                ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
     // public function __construct()
     // {
     //     $this->middleware('guest')->except('logout');

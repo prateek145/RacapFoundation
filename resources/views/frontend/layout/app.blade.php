@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="{{asset('public/frontend/owlcarousel/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 
-    
-    
+
+
     <link href="{{asset('public/frontend/style.css')}}" rel="stylesheet">
 </head>
 
@@ -26,7 +26,7 @@
 
     @include('frontend.layout.footer')
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    {{-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -337,7 +337,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     <script src="{{asset('public/frontend/owlcarousel/jquery.min.js')}}"></script>
     <script src="{{asset('public/frontend/owlcarousel/owl.carousel.min.js')}}"></script>
     <script src="{{asset('public/frontend/script.js')}}"></script>
@@ -345,9 +345,9 @@
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript">
-    new DataTable('#example');
-</script>
+    <script type="text/javascript">
+        new DataTable('#example');
+    </script>
 </body>
 
 </html>
