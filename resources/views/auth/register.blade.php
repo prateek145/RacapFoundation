@@ -367,7 +367,7 @@
             success: function(response) {
                 if (response.error) {
                     // console.log(response);
-                    alert('Ajax Error');
+                    alert(response.error);
                 }
                 
             }
