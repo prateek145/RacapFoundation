@@ -227,13 +227,13 @@ class LoginController extends Controller
 
             $mail = Mail::send('email.registeremail', ['body' => $array], function ($message) use ($request) {
                 $message->sender(env('MAIL_FROM_ADDRESS'));
-                $message->subject('RACAP FOUNDATION LOGIN EMAIL');
+                $message->subject('RACAP FOUNDATION REGISTER EMAIL');
                 $message->to($request->email);
             });
             // dd('prateek');
             if (!$mail) {
                 # code...
-                throw new \Exception("Mail not working", 1);
+                throw new \Exception("Mail not working");
             } else {
                 # code...
                 $user = new User();

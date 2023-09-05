@@ -2,6 +2,8 @@
 @section('content')
 <td class="wrapper">
     <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+        <img src="https://omegastaging.com.au/RacapFoundation/public/frontend/raclogo1.png" alt="" width="40%"
+            height="10%">
         <tr>
             <td>
                 <h3> Hi {{$body['email'] ?? ''}}</h3>
