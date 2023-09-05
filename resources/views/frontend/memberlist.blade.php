@@ -40,8 +40,7 @@
                             <tr>
                                 <td>
                                     @if (!is_null($item->image))
-                                    <img src="{{asset('public/uploads/users/' . $item->image)}}" height="30px"
-                                        width="30px" alt="">
+                                    <img src="{{$item->image}}" height="30px" width="30px" alt="">
                                     @else
                                     <img src="" height="30px" width="30px" alt="no image">
                                     @endif

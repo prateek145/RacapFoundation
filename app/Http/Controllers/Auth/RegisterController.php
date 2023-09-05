@@ -91,29 +91,36 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        // dd($request->all());
+        $rules = [
+            'email' => 'required|exists:users',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'bname' => 'required',
+            'city' => 'required',
+            'image' => 'required',
+            'state' => 'required',
+            'website' => 'required',
+            'country_code' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'otp' => 'required',
+            'sector' => 'required',
+        ];
+
+        $custommessages = [];
+
+        $this->validate($request, $rules, $custommessages);
         try {
-            $rules = [
-                'email' => 'required|unique:users',
-                'firstname' => 'required',
-                'lastname' => 'required',
-                'bname' => 'required',
-                'city' => 'required',
-                'state' => 'required',
-                'website' => 'required',
-                'country_code' => 'required',
-                'phone' => 'required',
-                'email' => 'required',
-                'otp' => 'required',
-                'sector' => 'required',
-            ];
-
-            $custommessages = [];
-
-            $this->validate($request, $rules, $custommessages);
             // dd($request->all());
             # code...
 
             $user = User::where('email', $request->email)->first();
+
+            if (!$user) {
+                # code...
+                throw new \Exception("Validate Email First");
+            }
             // dd($user);
             if ($request->otp === $user->otp) {
                 # code...
@@ -132,29 +139,29 @@ class RegisterController extends Controller
                 $data['role'] = 'member';
                 if ($request->image) {
                     # code...
-                    $data['image'] = rand() . $request->image->getClientOriginalName();
-                    $destination_path = public_path('/uploads/users');
-                    $request->image->move($destination_path, $data['image']);
+                    // $data['image'] = rand() . $request->image->getClientOriginalName();
+                    // $destination_path = public_path('/uploads/users');
+                    // $request->image->move($destination_path, $data['image']);
 
                     //get image and re declare and resize
-                    $image_resize = Image::make(public_path('/uploads/users/' . $data['image']));
-                    $image_resize->resize(150, 150);
-                    $data['image'] = rand() . $request->image->getClientOriginalName();
-                    // dd('pratek');
-                    $image_resize->save(public_path('/uploads/users/' . $data['image']));
+                    // $image_resize = Image::make(public_path('/uploads/users/' . $data['image']));
+                    // $image_resize->resize(150, 150);
+                    // $data['image'] = rand() . $request->image->getClientOriginalName();
+                    // // dd('pratek');
+                    // $image_resize->save(public_path('/uploads/users/' . $data['image']));
 
 
                     // convert base 64
-                    $path = $destination_path . '/' . $data['image'];
-                    $type = pathinfo($path, PATHINFO_EXTENSION);
-                    $data123 = file_get_contents($path);
-                    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data123);
+                    // $path = $destination_path . '/' . $data['image'];
+                    // $type = pathinfo($path, PATHINFO_EXTENSION);
+                    // $data123 = file_get_contents($path);
+                    // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data123);
                     // dd($base64);
                 }
 
                 $data['specific_id'] = rand() . rand() . $request->firstname . $request->lastname;
                 // dd($data);
-                $response = $this->registerapi($request->firstname, $request->lastname, $request->email, $request->phone, $request->bname, $request->sector, $request->city, $request->state, $request->website, $request->country_code, $base64);
+                $response = $this->registerapi($request->firstname, $request->lastname, $request->email, $request->phone, $request->bname, $request->sector, $request->city, $request->state, $request->website, $request->country_code, $request->image);
 
                 // dd($response);
                 if ($response->status == 'success') {
@@ -163,11 +170,18 @@ class RegisterController extends Controller
                     $user->lastname = $request->lastname;
                     $user->bname = $request->bname;
                     $user->city = $request->city;
+                    $user->image = $request->image;
+                    $user->role = 'member';
                     $user->state = $request->state;
                     $user->website = $request->website;
                     $user->country_code = $request->country_code;
                     $user->phone = $request->phone;
                     $user->sector = $request->sector;
+                    $user->specific_id = 'racap_' . rand() . rand();
+                    if ($request->show_business) {
+                        # code...
+                        $user->show_business = 'on';
+                    }
                     $user->save();
 
                     return redirect()->route('login')->with('success', $user->email . ' is registered');

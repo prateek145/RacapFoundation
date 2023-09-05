@@ -374,8 +374,7 @@
                         <div class="p-5"><img src="{{ asset('public/frontend/customer.png') }}" class="img-thumbnail" />
                         </div>
                         @else
-                        <div class="p-5"><img src="{{ asset('public/uploads/users/' . $item->image) }}"
-                                class="img-thumbnail" />
+                        <div class="p-5"><img src="{{$item->image}}" class="img-thumbnail" />
                         </div>
                         @endif
 

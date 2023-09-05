@@ -80,9 +80,10 @@
                                     <div id="emailHelp" class="mb-3 form-text">Upload Logo</div>
 
                                     {{-- <img src="" alt=""> --}}
-                                    <a href="{{asset('public/uploads/users/' . auth()->user()->image)}}"
-                                        target="_blank">Uploaded
-                                        Image</a>
+                                    {{-- {{dd(auth()->user()->image)}} --}}
+                                    <img src="{{ auth()->user()->image }}" alt="" height="300" width="300">
+                                    {{-- <a href="{{ auth()->user()->image }}">Uploaded
+                                        Image</a> --}}
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control mb-3" placeholder="Website"

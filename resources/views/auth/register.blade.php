@@ -1,6 +1,13 @@
 @extends('frontend/outer/app')
 @section('content')
 
+<!-- Normalize CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<!-- Cropper CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.css'>
+<!-- Cropper JS -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js'></script>
+
 <main>
     <section class="py-5 fact">
         <div class="container">
@@ -22,18 +29,41 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" class="form-control mb-3" name="firstname"
-                                        placeholder="First name" aria-label="First name">
+                                    <input type="text"
+                                        class="form-control mb-3 @error('firstname') is-invalid @enderror"
+                                        name="firstname" value="{{ old('firstname') }}" placeholder="First name"
+                                        aria-label="First name">
+
+
+                                    @error('firstname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control mb-3" name="lastname" placeholder="Last name"
+                                    <input type="text" class="form-control mb-3 @error('lastname') is-invalid @enderror"
+                                        name="lastname" value="{{ old('lastname') }}" placeholder="Last name"
                                         aria-label="Last name">
+
+                                    @error('lastname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
+
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" class="form-control mb-3" name="bname"
-                                        placeholder="Business name" aria-label="Business name">
+                                    <input type="text" class="form-control mb-3 @error('bname') is-invalid @enderror"
+                                        name="bname" placeholder="Business name" aria-label="Business name"
+                                        value="{{ old('bname') }}">
+                                    @error('bname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="col">
                                     <select class="form-control form-select" name="sector"
@@ -44,35 +74,88 @@
                                         <option>Electornic</option>
                                         <option>Others</option>
                                     </select>
+
+                                    @error('sector')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col">
-                                    <textarea name="sector1" id="" class="form-control d-none" cols="9"
-                                        rows="3"></textarea>
+                                    <input type="text" name="sector1" class="form-control mb-3 d-none">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" class="form-control mb-3" name="city" placeholder="City"
-                                        aria-label="City">
+                                    <input type="text" class="form-control mb-3 @error('city') is-invalid @enderror"
+                                        name="city" placeholder="City" aria-label="City" value="{{ old('city') }}">
+
+                                    @error('city')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control mb-3" name="state" placeholder="State"
-                                        aria-label="State">
+                                    <input type="text" class="form-control mb-3 @error('state') is-invalid @enderror"
+                                        name="state" placeholder="State" aria-label="State" value="{{old('state')}}">
+
+                                    @error('state')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <input type="file" class="form-control" name="image" placeholder="Logo"
-                                        aria-label="Logo">
+                                    <div class="page">
+                                        {{-- <h2>Upload ,Crop and save.</h2> --}}
+                                        <!-- input file -->
+                                        <div class="box">
+                                            <input type="file" id="file-input" class="form-control">
+                                        </div>
+                                        <!-- leftbox -->
+                                        <div class="box-2">
+                                            <div class="result"></div>
+                                        </div>
+                                        <!--rightbox-->
+                                        <div class="box-2 img-result hide">
+                                            <!-- result of crop -->
+                                            <img class="cropped" src="" alt="">
+                                            <input type="hidden" name="image" value="">
+                                        </div>
+                                        <!-- input file -->
+                                        <div class="box">
+                                            <div class="options hide">
+                                                <label> Width</label>
+                                                <input type="hidden" class="img-w form-control" value="300" min="100"
+                                                    max="1200" />
+                                            </div>
+                                            <!-- save btn -->
+                                            <button class="btn btn-primary save hide">Save</button>
+                                            <!-- download btn -->
+                                            {{-- <a href="" class="btn btn-primary download hide">Download</a> --}}
+                                        </div>
+                                    </div>
                                     <div id="emailHelp" class="mb-3 form-text">Upload Logo</div>
+
+
                                 </div>
-                                <div class="col">
-                                    <input type="text" class="form-control mb-3" name="website" placeholder="Website"
-                                        aria-label="Website">
-                                </div>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control mb-3 @error('website') is-invalid @enderror"
+                                    name="website" placeholder="Website" aria-label="Website"
+                                    value="{{ old('website') }}">
+
+                                @error('website')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="row">
                                 <div class="col d-flex">
@@ -307,19 +390,43 @@
                                             <option data-countrycode="ZM" value="260">Zambia (+260)</option>
                                             <option data-countrycode="ZW" value="263">Zimbabwe (+263)</option>
                                         </optgroup>
-                                    </select><input type="number" name="phone" class="form-control mb-3"
-                                        placeholder="Phone" aria-label="Phone">
+                                    </select>
+                                    <input type="number" name="phone"
+                                        class="form-control mb-3 @error('phone') is-invalid @enderror"
+                                        placeholder="Phone" aria-label="Phone" value="{{ old('phone') }}">
                                 </div>
+                                @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
 
                             <div class="row">
                                 <div class="col-md-8">
-                                    <input type="email" class="form-control mb-3" name="email" placeholder="Email"
-                                        aria-label="Email" onfocusout="sendemailotp(this.value)">
+                                    <input type="email" class="form-control mb-3 @error('email') is-invalid @enderror"
+                                        name="email" placeholder="Email" aria-label="Email" value="{{ old('email') }}">
+
+                                    <input type="button" class="form-control btn btn-primary btn-sm"
+                                        onclick="sendemailotp()" value="send otp">
+
+
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-4">
-                                    <input type="otp" class="form-control mb-3" name="otp" placeholder="Email Otp">
+                                    <input type="otp" class="form-control mb-3 @error('otp') is-invalid @enderror"
+                                        name="otp" placeholder="Email Otp" value="{{ old('otp') }}">
+
+                                    @error('otp')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -345,11 +452,15 @@
     </section>
 </main>
 
+
+
+
+
 <script>
     function showother(value){
         // console.log('prateek');
         var other = document.getElementsByName('sector1')[0];
-        console.log(value);
+
         if (value == 'Others') {
             other.className = "form-control d-flex";
         } else {
@@ -358,8 +469,8 @@
         }
     }
 
-    function sendemailotp(value){
-        console.log(value);
+    function sendemailotp(){
+        var value =  document.getElementsByName('email')[0].value;
         $.ajax({
             url: "{{ route('emailotp') }}",
             method: "POST",
@@ -369,9 +480,72 @@
                     // console.log(response);
                     alert(response.error);
                 }
+
+                if (response.success) {
+                    // console.log(response);
+                    alert('Otp Send');
+                }
+
                 
             }
         });
     }
+</script>
+
+<script>
+    let result = document.querySelector('.result'),
+img_result = document.querySelector('.img-result'),
+img_w = document.querySelector('.img-w'),
+img_h = document.querySelector('.img-h'),
+options = document.querySelector('.options'),
+save = document.querySelector('.save'),
+cropped = document.querySelector('.cropped'),
+dwn = document.querySelector('.download'),
+upload = document.querySelector('#file-input'),
+cropper = '';
+
+// on change show image with crop options
+upload.addEventListener('change', e => {
+  if (e.target.files.length) {
+    // start file reader
+    const reader = new FileReader();
+    reader.onload = e => {
+      if (e.target.result) {
+        // create new image
+        let img = document.createElement('img');
+        img.id = 'image';
+        img.src = e.target.result;
+        // clean result before
+        result.innerHTML = '';
+        // append new image
+        result.appendChild(img);
+        // show save btn and options
+        save.classList.remove('hide');
+        options.classList.remove('hide');
+        // init cropper
+        cropper = new Cropper(img);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  }
+});
+
+// save on click
+save.addEventListener('click', e => {
+  e.preventDefault();
+  // get result to data uri
+  let imgSrc = cropper.getCroppedCanvas({
+    width: img_w.value // input value
+  }).toDataURL();
+  // remove hide class of img
+  cropped.classList.remove('hide');
+  img_result.classList.remove('hide');
+  // show image cropped
+  cropped.src = imgSrc;
+  document.getElementsByName('image')[0].value = imgSrc;
+  dwn.classList.remove('hide');
+  dwn.download = 'imagename.png';
+  dwn.setAttribute('href', imgSrc);
+});
 </script>
 @endsection

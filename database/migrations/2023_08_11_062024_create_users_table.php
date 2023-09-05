@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('sector')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            $table->string('image')->nullable();
+            $table->longtext('image')->nullable();
             $table->string('website')->nullable();
             $table->string('gst_no')->nullable();
             $table->string('specific_id')->nullable();
